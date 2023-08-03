@@ -1,0 +1,28 @@
+schema {
+  query: Query
+  mutation: Mutation
+  subscription: Subscription
+}
+
+type Query {
+  books: [Book]
+}
+
+type Subscription {
+  commentAdded: Comment
+}
+
+type Mutation {
+  addComment(bookId: ID!, content: String!): Comment
+}
+
+type Book {
+  id: ID!
+  title: String
+  author: String
+}
+
+type Comment {
+  id: ID!
+  content: String
+}

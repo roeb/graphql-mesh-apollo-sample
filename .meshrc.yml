@@ -1,0 +1,10 @@
+sources:
+  - name: internal
+    handler:
+      graphql:
+        endpoint: "http://localhost:3500/graphql"
+        source: "./schema.graphql"
+
+serve:
+  fork: 1
+          

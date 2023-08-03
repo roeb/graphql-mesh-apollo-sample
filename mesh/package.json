@@ -1,0 +1,22 @@
+{
+  "name": "mesh",
+  "version": "1.0.0",
+  "repository": "https://github.com/roeb/graphql-mesh-apollo-sample.git",
+  "author": "roeb <r.meyer@cloudklabauter.de>",
+  "license": "MIT",
+  "dependencies": {
+    "@graphql-mesh/cli": "^0.86.1",
+    "@graphql-mesh/graphql": "^0.95.1",
+    "@graphql-mesh/runtime": "^0.96.1"
+  },
+  "devDependencies": {
+    "typescript": "^5.1.6",
+    "@types/node": "^20.4.5"
+  },
+  "scripts": {
+    "build": "yarn mesh build",
+    "start": "yarn mesh start",
+    "validate": "yarn mesh validate",
+    "dev": "yarn mesh dev"
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "name": "graphql-mesh-apollo-sample",
+  "version": "1.0.0",
+  "private": true,
+  "repository": "https://github.com/roeb/graphql-mesh-apollo-sample.git",
+  "author": "roeb <r.meyer@cloudklabauter.de>",
+  "license": "MIT",
+  "workspaces": {
+    "packages": [
+        "apollo",
+        "mesh"
+    ]
+  },
+  "dependencies": {
+    "@apollo/server": "^4.9.0",
+    "graphql": "^16.7.1",
+    "graphql-ws": "^5.14.0",
+    "ws": "^8.13.0",
+    "@graphql-tools/schema": "^10.0.0",
+    "graphql-subscriptions": "^2.0.0",
+    "@graphql-mesh/cli": "^0.86.1",
+    "@graphql-mesh/graphql": "^0.95.1",
+    "@graphql-mesh/runtime": "^0.96.1"
+  },
+  "devDependencies": {
+    "typescript": "^5.1.6",
+    "@types/node": "^20.4.5",
+    "@types/ws": "^8.5.5",
+    "@types/cors": "^2.8.13"
+  },
+  "scripts": {
+    "build": "yarn workspace apollo build && yarn workspace mesh build",
+    "start": "cp ./mesh/.meshrc.yml ./ & yarn workspace apollo start & (sleep 5 && yarn workspace mesh dev)"
+  }
+}
