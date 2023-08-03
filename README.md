@@ -11,7 +11,7 @@ Reproduction for the follwing issue in graphql-mesh: https://github.com/Urigo/gr
 
 3. `yarn start`
 
-The Apollo Server is available on port 3500 and the GraphQL Mesh on port 4000.
+The Apollo Server is available on port 3500, the GraphQL Mesh on port 4000 and the react app on port 5000.
 
 > ⚠️ Yoga GraphiQL doesn't work with subscription. It throws **Must provide query string**. Any other graphql client like Banana Cake Pop oder Apollo Studio works fine.
 
@@ -50,3 +50,5 @@ subscription {
 ```
 
 > You will see that here the correct header values are not passed like e.g. with query or mutation.
+
+6. The react app subscribes directly to the GraphQL mesh via websocket at startup. The subscription goes through to the Apollo server, but the connection parameters passed by the client do not follow. GraphQL Mesh does not resolve them correctly

@@ -21,13 +21,25 @@
     "graphql-subscriptions": "^2.0.0",
     "@graphql-mesh/cli": "^0.86.1",
     "@graphql-mesh/graphql": "^0.95.1",
-    "@graphql-mesh/runtime": "^0.96.1"
+    "@graphql-mesh/runtime": "^0.96.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "@apollo/client": "^3.7.17"
   },
   "devDependencies": {
     "typescript": "^5.1.6",
     "@types/node": "^20.4.5",
     "@types/ws": "^8.5.5",
-    "@types/cors": "^2.8.13"
+    "@types/cors": "^2.8.13",
+    "@types/react": "^18.2.15",
+    "@types/react-dom": "^18.2.7",
+    "@typescript-eslint/eslint-plugin": "^6.0.0",
+    "@typescript-eslint/parser": "^6.0.0",
+    "@vitejs/plugin-react": "^4.0.3",
+    "eslint": "^8.45.0",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "eslint-plugin-react-refresh": "^0.4.3",
+    "vite": "^4.4.5"
   },
   "scripts": {
     "build": "yarn workspace apollo build && yarn workspace mesh build && yarn workspace react build",
