@@ -15,7 +15,11 @@ The Apollo Server is available on port 3500, the GraphQL Mesh on port 4000 and t
 
 > ⚠️ Yoga GraphiQL doesn't work with subscription. It throws **Must provide query string**. Any other graphql client like Banana Cake Pop oder Apollo Studio works fine.
 
-4. Add the following Header to your Requests
+4. Once the GraphQL Mesh and Apollo Server are started, the React App must be started in a new terminal.
+
+`yarn start:react'
+
+5. Add the following Header to your Requests
 
 ```json
 {
@@ -26,7 +30,7 @@ The Apollo Server is available on port 3500, the GraphQL Mesh on port 4000 and t
 
 > After execeute the queries/mutation or subscription, you can find a console.log output with the available headers (header values).
 
-5. Execute Query
+6. Execute Query
 
 ```graphql
 query {
@@ -38,7 +42,7 @@ query {
 }
 ```
 
-5. Execute Subscription
+7. Execute Subscription
 
 ```graphql
 subscription {
@@ -51,4 +55,4 @@ subscription {
 
 > You will see that here the correct header values are not passed like e.g. with query or mutation.
 
-6. The react app subscribes directly to the GraphQL mesh via websocket at startup. The subscription goes through to the Apollo server, but the connection parameters passed by the client do not follow. GraphQL Mesh does not resolve them correctly
+8. The react app subscribes directly to the GraphQL mesh via websocket at startup. The subscription goes through to the Apollo server, but the connection parameters passed by the client do not follow. GraphQL Mesh does not resolve them correctly
