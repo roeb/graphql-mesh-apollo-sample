@@ -40,11 +40,15 @@ const typeDefs = `
 
 const resolvers = {
   Query: {
-    books: () => books,
+    books: (parent, args, context) => {
+      return books;
+    },
   },
   Mutation: {
     addComment(parent, { bookId, content }, { postController }) {
-      pubsub.publish("COMMENT_ADDED", {commentAdded: { id: bookId, content: content }});
+      pubsub.publish("COMMENT_ADDED", {
+        commentAdded: { id: bookId, content: content },
+      });
       return { id: bookId, content: content };
     },
   },
@@ -65,7 +69,36 @@ const wsServer = new WebSocketServer({
   path: "/graphql",
 });
 
-const serverCleanup = useServer({ schema }, wsServer);
+const serverCleanup = useServer(
+  {
+    schema,
+    context: async (ctx) => {
+      const { connectionParams } = ctx;
+
+      const myContext = {
+        authorization: connectionParams.authorization ?? connectionParams.Authorization,
+        tenant: connectionParams.tenant ?? connectionParams.Tenant,
+      };
+
+      console.log("Context Subscription: ", myContext);
+
+      return myContext;
+    },
+    onConnect: async (ctx) => {
+      const { connectionParams } = ctx;
+
+      const myContext = {
+        authorization: connectionParams.authorization ?? connectionParams.Authorization,
+        tenant: connectionParams.tenant ?? connectionParams.Tenant,
+      };
+
+      console.log("onConnect: ", myContext);
+
+      return myContext;
+    },
+  },
+  wsServer
+);
 
 const server = new ApolloServer({
   schema,
@@ -91,7 +124,18 @@ app.use(
   "/graphql",
   cors<cors.CorsRequest>(),
   bodyParser.json(),
-  expressMiddleware(server)
+  expressMiddleware(server, {
+    context: async ({ req, res }) => {
+      const myContext = {
+        authorization: req.headers.authorization ?? req.headers.Authorization,
+        tenant: req.headers.tenant ?? req.headers.Tenant,
+      };
+
+      console.log("Context Query/Mutation: ", myContext);
+
+      return myContext;
+    },
+  })
 );
 
 httpServer.listen(PORT, () => {

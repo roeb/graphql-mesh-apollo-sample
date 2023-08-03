@@ -4,7 +4,13 @@ sources:
       graphql:
         endpoint: "http://localhost:3500/graphql"
         source: "./schema.graphql"
-
+        operationHeaders:
+          Authorization: "{context.headers['authorization']}"
+          Tenant: "{context.headers['tenant']}"
+        connectionParams:
+          Authorization: "{context.connectionParams['authorization']}"
+          Tenant: "{context.connectionParams['tenant']}"
+          
 serve:
   fork: 1
           
