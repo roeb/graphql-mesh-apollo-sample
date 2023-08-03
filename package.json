@@ -8,7 +8,8 @@
   "workspaces": {
     "packages": [
         "apollo",
-        "mesh"
+        "mesh",
+        "react"
     ]
   },
   "dependencies": {
@@ -29,7 +30,7 @@
     "@types/cors": "^2.8.13"
   },
   "scripts": {
-    "build": "yarn workspace apollo build && yarn workspace mesh build",
-    "start": "cp ./mesh/.meshrc.yml ./ & yarn workspace apollo start & (sleep 5 && yarn workspace mesh dev)"
+    "build": "yarn workspace apollo build && yarn workspace mesh build && yarn workspace react build",
+    "start": "cp ./mesh/.meshrc.yml ./ & yarn workspace apollo start & (sleep 5 && yarn workspace mesh dev) & (sleep 10 && yarn workspace react dev)"
   }
 }
